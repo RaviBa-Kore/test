@@ -3,18 +3,22 @@ const { trace } = require('@opentelemetry/api');
 const tracer = trace.getTracer('dice-lib');
 
 function generateRandom10DigitNumber() {
-    const min = 1000000000; // Smallest 10-digit number
+    const min = 1000000000 ; // Smallest 10-digit number
     const max = 9999999999; // Largest 10-digit number
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min ;
 }
 
 function tokensGeneration() {
     const min = 10;
     const max = 1000;
-    const inTokens = Math.floor(Math.random() * (max - min + 1)) + min;
-    const outTokens = Math.floor(Math.random() * (max - min + 1)) + min;
-    return { inTokens, outTokens }
+    const randomInRange = () => Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    return {
+        inTokens: randomInRange(),
+        outTokens: randomInRange()
+    };
 }
+
 
 function getRandomEvent() {
     const nodeEvents = [
